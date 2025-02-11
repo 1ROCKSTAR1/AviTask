@@ -13,31 +13,28 @@ public class SortTest extends BaseTest {
     @Description("Тест для проверки сортировки по убыванию цены")
     public void sortedFromHighToLow() {
 
-        List<String> goodsAfterSortingByStream = new GoodsPage(getDriver())
-                .getFirstActualListOfLocatorsAndSortFromHighToLow();
+        GoodsPage goodsPage = new GoodsPage(getDriver());
+        List<String> goodsAfterSortingByStream = goodsPage.getAndSortPricesHighLow();
 
-        GoodsPage someActionsOnGoodsPage = new GoodsPage(getDriver())
-                .clickOnSortAndChooseFromHighToLow();
+        goodsPage.clickOnSortAndChooseFromHighToLow();
 
-        List<String> goodsAfterSortingOnSite = new GoodsPage(getDriver())
-                .getActualListOfLocatorsAfterSorting();
+        List<String> goodsAfterSortingOnSite = goodsPage.getPricesAfterSorting();
 
-        Assert.assertEquals(goodsAfterSortingOnSite,goodsAfterSortingByStream);
+        Assert.assertEquals(goodsAfterSortingOnSite, goodsAfterSortingByStream);
     }
 
     @Test
     @Description("Тест для проверки сортировки по возрастанию цены")
     public void sortedFromLowToHigh() {
 
-        List<String> goodsAfterSortingByStream = new GoodsPage(getDriver())
-                .getFirstActualListOfLocatorsAndSortFromLowToHigh();
+        GoodsPage goodsPage = new GoodsPage(getDriver());
+        List<String> goodsAfterSortingByStream = goodsPage.getAndSortPricesLowHigh();
 
-        GoodsPage someActionsOnGoodsPage = new GoodsPage(getDriver())
-                .clickOnSortAndChooseFromLowToHigh();
+        goodsPage.clickOnSortAndChooseFromLowToHigh();
 
-        List<String> goodsAfterSortingOnSite = new GoodsPage(getDriver())
-                .getActualListOfLocatorsAfterSorting();
+        List<String> goodsAfterSortingOnSite = goodsPage.getPricesAfterSorting();
 
-        Assert.assertEquals(goodsAfterSortingOnSite,goodsAfterSortingByStream);
+        Assert.assertEquals(goodsAfterSortingOnSite, goodsAfterSortingByStream);
     }
+
 }

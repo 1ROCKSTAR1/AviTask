@@ -6,12 +6,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class GoodsPage extends BasePage {
+
+    @FindBy(xpath = "//h4//following::div[2]")
+    private List<WebElement> items;
 
     @FindBy(xpath = "//div[@class='css-1cickmn'][1]/a/div/div/div[2]")
     private WebElement firstItemPrice;
@@ -41,58 +42,38 @@ public class GoodsPage extends BasePage {
         super(driver);
     }
 
-    public List<String> getFirstActualListOfLocatorsAndSortFromHighToLow() {
-        List<String> firstActualList = new ArrayList<>();
-
-        firstActualList.add(getWait5().until(ExpectedConditions.visibilityOf(firstItemPrice)).getText());
-        firstActualList.add(getWait5().until(ExpectedConditions.visibilityOf(secondItemPrice)).getText());
-        firstActualList.add(getWait5().until(ExpectedConditions.visibilityOf(thirdItemPrice)).getText());
-        firstActualList.add(getWait5().until(ExpectedConditions.visibilityOf(fourthItemPrice)).getText());
-        firstActualList.add(getWait5().until(ExpectedConditions.visibilityOf(fifthItemPrice)).getText());
-
-        return firstActualList
-                .stream()
-                .sorted(Comparator.reverseOrder())
-                .collect(Collectors.toList());
-    }
-
-    public List<String> getFirstActualListOfLocatorsAndSortFromLowToHigh() {
-        List<String> firstActualList = new ArrayList<>();
-
-        firstActualList.add(getWait5().until(ExpectedConditions.visibilityOf(firstItemPrice)).getText());
-        firstActualList.add(getWait5().until(ExpectedConditions.visibilityOf(secondItemPrice)).getText());
-        firstActualList.add(getWait5().until(ExpectedConditions.visibilityOf(thirdItemPrice)).getText());
-        firstActualList.add(getWait5().until(ExpectedConditions.visibilityOf(fourthItemPrice)).getText());
-        firstActualList.add(getWait5().until(ExpectedConditions.visibilityOf(fifthItemPrice)).getText());
-
-        return firstActualList
-                .stream()
+    public List<String> getAndSortPricesLowHigh() {
+        getWait5().until(ExpectedConditions.visibilityOfAllElements(items));
+        return items.stream()
+                .map(x -> x.getText().replaceAll("\\D", ""))
                 .sorted()
-                .collect(Collectors.toList());
+                .toList();
     }
 
-    public List<String> getActualListOfLocatorsAfterSorting() {
-        List<String> actualListAfterSortingOnSite = new ArrayList<>();
-
-        actualListAfterSortingOnSite.add(getWait5().until(ExpectedConditions.visibilityOf(firstItemPrice)).getText());
-        actualListAfterSortingOnSite.add(getWait5().until(ExpectedConditions.visibilityOf(secondItemPrice)).getText());
-        actualListAfterSortingOnSite.add(getWait5().until(ExpectedConditions.visibilityOf(thirdItemPrice)).getText());
-        actualListAfterSortingOnSite.add(getWait5().until(ExpectedConditions.visibilityOf(fourthItemPrice)).getText());
-        actualListAfterSortingOnSite.add(getWait5().until(ExpectedConditions.visibilityOf(fifthItemPrice)).getText());
-
-        return actualListAfterSortingOnSite;
+    public List<String> getAndSortPricesHighLow() {
+        getWait5().until(ExpectedConditions.visibilityOfAllElements(items));
+        return items.stream()
+                .map(x -> x.getText().replaceAll("\\D", ""))
+                .sorted(Comparator.reverseOrder())
+                .toList();
     }
 
-    public GoodsPage clickOnSortAndChooseFromHighToLow() {
+    public List<String> getPricesAfterSorting() {
+        getWait5().until(ExpectedConditions.visibilityOfAllElements(items));
+        return items.stream()
+                .map(x -> x.getText().replaceAll("\\D", ""))
+                .sorted()
+                .toList();
+    }
+
+    public void clickOnSortAndChooseFromHighToLow() {
         getWait5().until(ExpectedConditions.visibilityOf(sortPriceButton)).click();
         getWait5().until(ExpectedConditions.visibilityOf(sortFromHighToLowButton)).click();
-        return this;
     }
 
-    public GoodsPage clickOnSortAndChooseFromLowToHigh() {
+    public void clickOnSortAndChooseFromLowToHigh() {
         getWait5().until(ExpectedConditions.visibilityOf(sortPriceButton)).click();
         getWait5().until(ExpectedConditions.visibilityOf(sortFromLowToHighButton)).click();
-        return this;
     }
 }
 
