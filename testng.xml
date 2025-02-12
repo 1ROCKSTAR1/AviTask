@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+
+    <listeners>
+        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
+        <listener class-name="Base.TestListener"/>
+    </listeners>
+
+    <test verbose="2" preserve-order="true" name="AviTask">
+        <classes>
+            <class name="Test.ItemsTest">
+                <methods>
+                    <include name="sockTest"/>
+                    <include name="carpetTest"/>
+                    <include name="cloakTest"/>
+                    <include name="bucketTest"/>
+                    <include name="chairTest"/>
+                </methods>
+            </class>
+            <class name="Test.PagiTest">
+                <methods>
+                    <include name="pagi5Test"/>
+                    <include name="pagi10Test"/>
+                    <include name="pagi15Test"/>
+                    <include name="pagi20Test"/>
+                    <include name="pagi25Test"/>
+                </methods>
+            </class>
+            <class name="Test.SortTest">
+                <methods>
+                    <include name="sortedFromHighToLow"/>
+                    <include name="sortedFromLowToHigh"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
