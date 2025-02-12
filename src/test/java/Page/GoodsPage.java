@@ -11,6 +11,21 @@ import java.util.List;
 
 public class GoodsPage extends BasePage {
 
+    @FindBy(xpath = "//button[@id='menu-list-:r5:-menuitem-:r6:']")
+    private WebElement pagi5Button;
+
+    @FindBy(xpath = "//button[@id='menu-list-:r5:-menuitem-:r7:']")
+    private WebElement pagi10Button;
+
+    @FindBy(xpath = "//button[@id='menu-list-:r5:-menuitem-:r8:']")
+    private WebElement pagi15Button;
+
+    @FindBy(xpath = "//button[@id='menu-list-:r5:-menuitem-:r9:']")
+    private WebElement pagi20Button;
+
+    @FindBy(xpath = "//button[@id='menu-list-:r5:-menuitem-:ra:']")
+    private WebElement pagi25Button;
+
     @FindBy(xpath = "//h4//following::div[2]")
     private List<WebElement> items;
 
@@ -38,8 +53,36 @@ public class GoodsPage extends BasePage {
     @FindBy(xpath = "//button[contains(text(),'По возрастанию')]")
     private WebElement sortFromLowToHighButton;
 
+    @FindBy(xpath = "//div[@class='css-1cickmn']")
+    private List<WebElement> itemsOfGoods;
+
+    @FindBy(xpath = "//button[@id='menu-button-:r5:']")
+    private WebElement pagiMainButton;
+
+    @FindBy(xpath = "//img[@alt='Picture of Носок']")
+    private WebElement socksIcon;
+
+    @FindBy(xpath = "//img[@alt='Picture of Ковер']")
+    private WebElement carpetIcon;
+
+    @FindBy(xpath = "//img[@alt='Picture of Плащ невидимка']")
+    private WebElement cloakIcon;
+
+    @FindBy(xpath = "//img[@alt='Picture of Ведро снега']")
+    private WebElement bucketIcon;
+
+    @FindBy(xpath = "//img[@alt='Picture of Стул старинный']")
+    private WebElement chairIcon;
+
+
     public GoodsPage(WebDriver driver) {
         super(driver);
+    }
+
+    public List<WebElement> getItemsOfGoods() {
+        getWait5().until(ExpectedConditions.visibilityOfAllElements(itemsOfGoods));
+        return itemsOfGoods.stream()
+                    .toList();
     }
 
     public List<String> getAndSortPricesLowHigh() {
@@ -62,7 +105,6 @@ public class GoodsPage extends BasePage {
         getWait5().until(ExpectedConditions.visibilityOfAllElements(items));
         return items.stream()
                 .map(x -> x.getText().replaceAll("\\D", ""))
-                .sorted()
                 .toList();
     }
 
@@ -74,6 +116,36 @@ public class GoodsPage extends BasePage {
     public void clickOnSortAndChooseFromLowToHigh() {
         getWait5().until(ExpectedConditions.visibilityOf(sortPriceButton)).click();
         getWait5().until(ExpectedConditions.visibilityOf(sortFromLowToHighButton)).click();
+    }
+
+    public PagiPage clickOnMainPagiButton() {
+        getWait5().until(ExpectedConditions.visibilityOf(pagiMainButton)).click();
+        return new PagiPage(getDriver());
+    }
+
+    public SocksPage clickOnSocksIcon() {
+        getWait5().until(ExpectedConditions.visibilityOf(socksIcon)).click();
+        return new SocksPage(getDriver());
+    }
+
+    public CarpetPage clickOnCarpetIcon() {
+        getWait5().until(ExpectedConditions.visibilityOf(carpetIcon)).click();
+        return new CarpetPage(getDriver());
+    }
+
+    public CloakPage clickOnCloakIcon() {
+        getWait5().until(ExpectedConditions.visibilityOf(cloakIcon)).click();
+        return new CloakPage(getDriver());
+    }
+
+    public BucketPage clickOnBucketIcon() {
+        getWait5().until(ExpectedConditions.visibilityOf(bucketIcon)).click();
+        return new BucketPage(getDriver());
+    }
+
+    public ChairPage clickOnChairIcon() {
+        getWait5().until(ExpectedConditions.visibilityOf(chairIcon)).click();
+        return new ChairPage(getDriver());
     }
 }
 
