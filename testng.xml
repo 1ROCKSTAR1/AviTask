@@ -33,6 +33,14 @@
                     <include name="sortedFromLowToHigh"/>
                 </methods>
             </class>
+            <class name="Test.CreateNewAdvTest">
+                <methods>
+                    <include name="advNameFieldTest"/>
+                    <include name="advPriceTest"/>
+                    <include name="advDescFieldTest"/>
+                    <include name="advURLPicFieldTest"/>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>

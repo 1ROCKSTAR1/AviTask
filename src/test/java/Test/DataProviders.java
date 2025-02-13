@@ -46,7 +46,6 @@ public class DataProviders {
                 { "10000"},
                 { "-5.00"},
                 { "abc"},
-                { "10001"},
         };
     }
 

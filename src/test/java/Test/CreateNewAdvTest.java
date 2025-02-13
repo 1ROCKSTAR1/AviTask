@@ -72,7 +72,7 @@ public class CreateNewAdvTest extends BaseTest {
 
     @Epic(value = "UI")
     @Feature(value = "Creating a new adv")
-    @Description("Проверка поля Описание")
+    @Description("Проверка поля Ссылка на изображение")
     @Test(priority = 4, description = "Adv URL Pic DP Field's Check", dataProvider = "imageUrlProvider", dataProviderClass = DataProviders.class)
     public void advURLPicFieldTest(String option) {
 
