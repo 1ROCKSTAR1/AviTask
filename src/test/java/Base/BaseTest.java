@@ -1,5 +1,6 @@
 package Base;
 
+import io.qameta.allure.Allure;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -23,6 +24,7 @@ public abstract class BaseTest {
         driver = new ChromeDriver(chromeOptions);
         driver.manage().window().maximize();
         getDriver().get(BASE_URL);
+        Allure.step("Переход на ресурс");
     }
 
     @AfterMethod(description = "Browser tearDown")

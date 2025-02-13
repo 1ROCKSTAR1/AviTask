@@ -1,6 +1,7 @@
 package Page;
 
 import Base.BasePage;
+import io.qameta.allure.Allure;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -74,18 +75,22 @@ public class GoodsPage extends BasePage {
     @FindBy(xpath = "//img[@alt='Picture of Стул старинный']")
     private WebElement chairIcon;
 
+    @FindBy(xpath = "//button[@type='button'][contains(text(),'Создать')]")
+    private WebElement createNewAdvButton;
 
     public GoodsPage(WebDriver driver) {
         super(driver);
     }
 
     public List<WebElement> getItemsOfGoods() {
+        Allure.step("Получение списка товаров");
         getWait5().until(ExpectedConditions.visibilityOfAllElements(itemsOfGoods));
         return itemsOfGoods.stream()
                     .toList();
     }
 
     public List<String> getAndSortPricesLowHigh() {
+        Allure.step("Получение списка с ценами на сайте и их эталонная сортировка low-high");
         getWait5().until(ExpectedConditions.visibilityOfAllElements(items));
         return items.stream()
                 .map(x -> x.getText().replaceAll("\\D", ""))
@@ -94,6 +99,7 @@ public class GoodsPage extends BasePage {
     }
 
     public List<String> getAndSortPricesHighLow() {
+        Allure.step("Получение списка с ценами на сайте и их эталонная сортировка high-low");
         getWait5().until(ExpectedConditions.visibilityOfAllElements(items));
         return items.stream()
                 .map(x -> x.getText().replaceAll("\\D", ""))
@@ -102,6 +108,7 @@ public class GoodsPage extends BasePage {
     }
 
     public List<String> getPricesAfterSorting() {
+        Allure.step("Получение списка с ценами после сортировки на сайте");
         getWait5().until(ExpectedConditions.visibilityOfAllElements(items));
         return items.stream()
                 .map(x -> x.getText().replaceAll("\\D", ""))
@@ -109,43 +116,57 @@ public class GoodsPage extends BasePage {
     }
 
     public void clickOnSortAndChooseFromHighToLow() {
+        Allure.step("Выполнение сортировки по убыванию");
         getWait5().until(ExpectedConditions.visibilityOf(sortPriceButton)).click();
         getWait5().until(ExpectedConditions.visibilityOf(sortFromHighToLowButton)).click();
     }
 
     public void clickOnSortAndChooseFromLowToHigh() {
+        Allure.step("Выполнение сортировки по возрастанию");
         getWait5().until(ExpectedConditions.visibilityOf(sortPriceButton)).click();
         getWait5().until(ExpectedConditions.visibilityOf(sortFromLowToHighButton)).click();
     }
 
     public PagiPage clickOnMainPagiButton() {
+        Allure.step("Клик по кнопке выбора пагинации");
         getWait5().until(ExpectedConditions.visibilityOf(pagiMainButton)).click();
         return new PagiPage(getDriver());
     }
 
     public SocksPage clickOnSocksIcon() {
+        Allure.step("Клик по иконке товара");
         getWait5().until(ExpectedConditions.visibilityOf(socksIcon)).click();
         return new SocksPage(getDriver());
     }
 
     public CarpetPage clickOnCarpetIcon() {
+        Allure.step("Клик по иконке товара");
         getWait5().until(ExpectedConditions.visibilityOf(carpetIcon)).click();
         return new CarpetPage(getDriver());
     }
 
     public CloakPage clickOnCloakIcon() {
+        Allure.step("Клик по иконке товара");
         getWait5().until(ExpectedConditions.visibilityOf(cloakIcon)).click();
         return new CloakPage(getDriver());
     }
 
     public BucketPage clickOnBucketIcon() {
+        Allure.step("Клик по иконке товара");
         getWait5().until(ExpectedConditions.visibilityOf(bucketIcon)).click();
         return new BucketPage(getDriver());
     }
 
     public ChairPage clickOnChairIcon() {
+        Allure.step("Клик по иконке товара");
         getWait5().until(ExpectedConditions.visibilityOf(chairIcon)).click();
         return new ChairPage(getDriver());
+    }
+
+    public AdvPage clickOnCreateNewAdvButton() {
+        Allure.step("Клик по кнопке Создать");
+        getWait5().until(ExpectedConditions.visibilityOf(createNewAdvButton)).click();
+        return new AdvPage(getDriver());
     }
 }
 

@@ -11,10 +11,11 @@ import java.util.List;
 
 public class SortTest extends BaseTest {
 
-    @Test(priority = 1, description = "Sorting high to low Check")
-    @Epic("UI")
-    @Feature("Sorting")
+
+    @Epic(value = "UI")
+    @Feature(value = "Sorting")
     @Description("Тест для проверки сортировки по убыванию цены")
+    @Test(priority = 1, description = "Sorting high to low Check")
     public void sortedFromHighToLow() {
 
         GoodsPage goodsPage = new GoodsPage(getDriver());
@@ -27,10 +28,11 @@ public class SortTest extends BaseTest {
         Assert.assertEquals(goodsAfterSortingOnSite, goodsAfterSortingByStream);
     }
 
-    @Test(priority = 2, description = "Sorting low to high Check")
-    @Epic("UI")
-    @Feature("Sorting")
+
+    @Epic(value = "UI")
+    @Feature(value = "Sorting")
     @Description("Тест для проверки сортировки по возрастанию цены")
+    @Test(priority = 2, description = "Sorting low to high Check")
     public void sortedFromLowToHigh() {
 
         GoodsPage goodsPage = new GoodsPage(getDriver());
