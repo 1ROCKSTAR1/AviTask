@@ -65,6 +65,7 @@ public class DataProviders {
     @DataProvider(name = "imageUrlProvider")
     public Object[][] imageUrlProvider() {
         return new Object[][] {
+                {""},
                 {"https://example.com/image.jpg"},
                 {"http://example.com/image.png"},
                 {"ftp://example.com/image.gif"},
@@ -74,7 +75,6 @@ public class DataProviders {
                 {"example.com/image.jpg"},
                 {"https://example.com/image.jpg"},
                 {"https://example.com/image.pdf"},
-                {""}
         };
     }
 }
