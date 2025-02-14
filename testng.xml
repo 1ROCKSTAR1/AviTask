@@ -41,6 +41,12 @@
                     <include name="advURLPicFieldTest"/>
                 </methods>
             </class>
+            <class name="Api.ApiTest">
+                <methods>
+                    <include name="getItemTest"/>
+                    <include name="createItemTest"/>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>
