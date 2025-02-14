@@ -45,6 +45,8 @@
                 <methods>
                     <include name="getItemTest"/>
                     <include name="createItemTest"/>
+                    <include name="getStatisticItemTest"/>
+                    <include name="getItemsSellerTest"/>
                 </methods>
             </class>
         </classes>

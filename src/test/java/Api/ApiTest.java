@@ -4,6 +4,12 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
+import org.testng.Assert;
+
+import java.util.List;
+
+import static io.restassured.RestAssured.given;
 
 
 public class ApiTest {
@@ -36,7 +42,6 @@ public class ApiTest {
         Statistics statistics = new Statistics(3, 123, 12);
         Product product = new Product(1234345231, "dsds", 1, statistics);
 
-
         RestAssured.given()
                 .log().all()
                 .when()
@@ -45,6 +50,46 @@ public class ApiTest {
                 "application/json")
                 .body(product)
                 .post(BASE_URL + "/api/1/item")
+                .then()
+                .log().all()
+                .assertThat()
+                .statusCode(200);
+    }
+
+    @Epic("API")
+    @org.testng.annotations.Test(testName = "Get statistics adv")
+    @Description(value = "Получить статистику по объявлению")
+    public void getStatisticItemTest() {
+
+        String id = "0cd4183f-a699-4486-83f8-b513dfde477a";
+
+        RestAssured.given()
+                .log().all()
+                .when()
+                .contentType(ContentType.JSON)
+                .header("Accept",
+                        "application/json")
+                .get(BASE_URL + "/api/1/statistic/" + id)
+                .then()
+                .log().all()
+                .assertThat()
+                .statusCode(200);
+    }
+
+    @Epic("API")
+    @org.testng.annotations.Test(testName = "Get all seller's items")
+    @Description(value = "Получить все items продавца")
+    public void getItemsSellerTest() {
+
+        String sellerId = "1234345231";
+
+        RestAssured.given()
+                .log().all()
+                .when()
+                .contentType(ContentType.JSON)
+                .header("Accept",
+                        "application/json")
+                .get(BASE_URL + "/api/1/" + sellerId + "/item")
                 .then()
                 .log().all()
                 .assertThat()
