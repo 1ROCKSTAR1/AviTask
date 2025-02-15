@@ -47,6 +47,7 @@
                     <include name="createItemTest"/>
                     <include name="getStatisticItemTest"/>
                     <include name="getItemsSellerTest"/>
+                    <include name="checkSellerIdsInAllItemsTest"/>
                 </methods>
             </class>
         </classes>
